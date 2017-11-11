@@ -9,10 +9,11 @@ import java.util.Calendar;
 
 public class Notification {
 
-    String title;
-    String body;
-    boolean isOn;
-    Calendar time;
+    String title = "TITLE";
+    String body = "memos";
+    boolean isOn = true;
+    Calendar time = Calendar.getInstance();
+
 
     public String getTitle() {
         return title;
