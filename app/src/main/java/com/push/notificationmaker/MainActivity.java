@@ -5,11 +5,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+
+import com.push.notificationmaker.Model.Notification;
+import com.push.notificationmaker.View.NotificationsAdapter;
+
+import java.util.ArrayList;
+
+import static com.push.notificationmaker.R.id.btn_add;
 
 public class MainActivity extends AppCompatActivity {
+
+    FloatingActionButton btnAdd;
+    ListView mListView;
+    NotificationsAdapter mAdapter;
+
+    ArrayList<Notification> mList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +33,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btn_add);
-        fab.setOnClickListener(new View.OnClickListener() {
+        btnAdd = (FloatingActionButton) findViewById(btn_add);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
+        mListView = (ListView) findViewById(R.id.listview);
+        mAdapter = new NotificationsAdapter(getApplicationContext(), R.layout.item_notification, mList);
+        mListView.setAdapter(mAdapter);
+
     }
 
     @Override
